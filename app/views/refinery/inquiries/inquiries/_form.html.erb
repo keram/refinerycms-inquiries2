@@ -1,0 +1,39 @@
+<%= form_for [refinery, :inquiries, @inquiry],
+              html: { data: { remote: true }} do |f| %>
+
+  <%= render '/refinery/admin/error_messages',
+             object: @inquiry,
+             include_object_name: true  %>
+
+  <div class="field">
+    <%= f.required_label :name, class: 'placeholder-fallback' %>
+    <%= f.text_field :name, class: 'text', required: true,
+                  placeholder: t('.name_placeholder') %>
+  </div>
+  <div class="field">
+    <%= f.required_label :email, class: 'placeholder-fallback' %>
+    <%= f.email_field :email, class: 'text email', required: true,
+                  placeholder: t('.email_placeholder') %>
+  </div>
+
+<% if Refinery::Inquiries.show_phone_number_field %>
+  <div class="field">
+    <%= f.label :phone, class: 'placeholder-fallback' %>
+    <%= f.text_field :phone, class: 'text phone',
+                  placeholder: t('.phone_placeholder') %>
+  </div>
+<% end %>
+
+  <div class="field message_field">
+    <%= f.required_label :message, class: 'placeholder-fallback' %>
+    <%= f.text_area :message, rows: 8, required: true,
+                placeholder: t('.message_placeholder') %>
+  </div>
+  <% privacy_policy_page = if Refinery::Inquiries.show_contact_privacy_link && refinery_plugin.privacy_policy_page.present?
+                              refinery_plugin.privacy_policy_page
+                            end -%>
+  <div class="actions">
+    <%= f.submit t('.send'), data: { disable_with: t('.sending_please_wait') } %>
+    <%= link_to t('.privacy_policy'), refinery.url_for(privacy_policy_page.url), id: 'privacy_link' if privacy_policy_page %>
+  </div>
+<% end %>

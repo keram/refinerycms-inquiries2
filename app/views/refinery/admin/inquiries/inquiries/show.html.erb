@@ -1,0 +1,119 @@
+<section id="records">
+  <h2><%= t('.inquiry') %></h2>
+  <table id="inquiry" class="inquiry">
+    <thead>
+      <tr>
+        <th></th>
+        <td>
+        <% if @inquiry.spam? %>
+          <%= t('.spam') %>
+        <% end %>
+        <% if @inquiry.archived? %>
+          <%= t('.archived') %>
+        <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= t('.age') %></th>
+        <td><%= time_ago_in_words(@inquiry.created_at) %></td>
+      </tr>
+    </thead>
+
+      <tr>
+        <td>
+          <strong>
+            <%= t('.name', default: t('activerecord.attributes.inquiry.name')) %>
+          </strong>
+        </td>
+        <td>
+          <%= @inquiry.name %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <strong>
+            <%= t('.email', default: t('activerecord.attributes.inquiry.email')) %>
+          </strong>
+        </td>
+        <td>
+          <%= @inquiry.email %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <strong>
+            <%= t('.phone', default: t('activerecord.attributes.inquiry.phone')) %>
+          </strong>
+        </td>
+        <td>
+          <%= @inquiry.phone %>
+        </td>
+      </tr>
+
+      <tr>
+        <td valign="top">
+          <strong>
+            <%= t('.message', default: t('activerecord.attributes.inquiry.message')) %>
+          </strong>
+        </td>
+        <td>
+          <p>
+            <% @inquiry.message.to_s.gsub("\r\n\r\n", "\r\n").split("\r\n").each_with_index do |sentence, index| %>
+              <%=raw "</p><p>" unless index == 0 %>
+              <%= sentence %>
+            <% end %>
+          </p>
+        </td>
+      </tr>
+  </table>
+</section>
+<aside id="actions">
+  <h2><%= t('.actions') %></h2>
+  <ul>
+    <li>
+      <%= link_to t('.back_to_all_inquiries'), refinery.url_for(action: 'index'),
+                   class: 'icon-small icon-with-text back-icon' %>
+    </li>
+    <li>
+      <%= link_to t('delete', scope: 'refinery.admin.record'),
+                  refinery.admin_inquiries_inquiry_path(@inquiry),
+                  class: 'icon-small icon-with-text delete-icon confirm-delete',
+                  title: t('delete', scope: 'refinery.admin.inquiries.inquiries'),
+                  data: {
+                    confirm:  t('message', scope: 'refinery.admin.delete', title: @inquiry.name),
+                    method: 'delete'
+                  } %>
+    </li>
+
+  <% if @inquiry.fresh? %>
+    <li>
+    <% if @inquiry.spam? %>
+      <%= link_to t('mark_as_ham', scope: 'refinery.admin.inquiries.inquiries.inquiry'),
+                  refinery.toggle_spam_admin_inquiries_inquiry_path(@inquiry),
+                  class: 'icon-small icon-with-text email-icon' -%>
+    <% else -%>
+      <%= link_to t('mark_as_spam', scope: 'refinery.admin.inquiries.inquiries.inquiry'),
+                  refinery.toggle_spam_admin_inquiries_inquiry_path(@inquiry),
+                  class: 'icon-small icon-with-text spam-icon' -%>
+    <% end -%>
+    </li>
+  <% end %>
+
+  <% if @inquiry.ham? %>
+    <li>
+    <% if @inquiry.fresh? %>
+      <%= link_to t('mark_as_archived', scope: 'refinery.admin.inquiries.inquiries.inquiry'),
+                  refinery.toggle_archived_admin_inquiries_inquiry_path(@inquiry),
+                  class: 'icon-small icon-with-text folder-icon' -%>
+    <% else -%>
+      <%= link_to t('mark_as_fresh', scope: 'refinery.admin.inquiries.inquiries.inquiry'),
+                  refinery.toggle_archived_admin_inquiries_inquiry_path(@inquiry),
+                  class: 'icon-small icon-with-text email-icon' -%>
+    <% end -%>
+    </li>
+  <% end %>
+
+  </ul>
+</aside>

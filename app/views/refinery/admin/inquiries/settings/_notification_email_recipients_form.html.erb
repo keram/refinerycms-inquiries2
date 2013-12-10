@@ -1,0 +1,35 @@
+<%= form_for @setting,
+              url: refinery.admin_inquiries_setting_path,
+              html: { data: { remote: true }} do |f| %>
+
+  <div class="clearfix">
+    <div class="form-title">
+      <h1>
+        <%= t('edit_setting', scope: 'refinery.admin.settings.actions') %>:
+        <%= t('notification_email_recipients', scope: 'refinery.admin.settings') %>
+      </h1>
+      <div>
+        <p class="breadcrumbs less-important">
+          <%= link_to refinery_plugin.title, refinery_plugin.url %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <%= render '/refinery/admin/error_messages', object: @setting, include_object_name: true %>
+
+  <div class="field">
+    <%= f.label :value, t('.settings_value_name') %>
+    <%= f.text_field :value, value: @setting.value, class: 'larger widest' %>
+  </div>
+
+  <p>
+    <%= t('.hint') %>
+    <br/>
+    <%= t('.example') %>
+  </p>
+
+  <%= render '/refinery/admin/form_actions', f: f,
+             cancel_url: refinery.admin_inquiries_inquiries_path,
+             hide_delete: true  %>
+<% end %>

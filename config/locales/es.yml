@@ -1,0 +1,76 @@
+es:
+  refinery:
+    plugins:
+      inquiries:
+        title: Inquiries
+    inquiries:
+      inquiries:
+        form:
+          name_placeholder: ''
+          email_placeholder: ''
+          phone_placeholder: ''
+          message_placeholder: ''
+          sending_please_wait: 'Sending, please wait'
+          send: Enviar mensaje
+          privacy_policy: "Nosotros valoramos tu privacidad"
+    admin:
+      inquiries:
+        inquiries:
+          delete: "Estas seguro que quieres borrar esta consulta de '%{name}'?"
+          inquiry:
+            detail: Leer esta consulta
+            mark_as_spam: Mark as spam
+            mark_as_ham: Move to inbox
+            mark_as_archived: Move to archive
+            mark_as_fresh: Move to inbox
+            fresh: Fresh
+            ham: Ham
+            spam: Spam
+            archive: Archive
+          index:
+            no_inquiries: No has recibido ninguna consulta aun.
+          show:
+            details: Detalles
+            click_to_email: Click al email
+            status: Estatus
+            open: Abierto
+            closed: Cerrado
+            age: Edad
+            actions: Acciones
+            back_to_all_inquiries: Regresar a todas las consultas
+            inquiry: Inquiry
+          actions:
+            inbox: Inbox
+            spam: Spam
+            archived: Archived
+            update_notified: "Actualizar a quien será notificado"
+            edit_confirmation_email: "Editar email de confirmación"
+        settings:
+          update:
+            updated: "'%{setting}' fue actualizado exitosamente."
+          notification_email_recipients_form:
+            settings_value_name: Mandar notificaciones a
+            explanation: "Cada vez que alguien se comunique con usted en su sitio web, Refinery enviara un correo electrónico respecto a esta nueva consulta."
+            hint: "Ingrese una dirección de correo. Ingrese la dirección de correo de las persona que vaya a ser notificada, si quiere que varias personas sean notificadas ingrese las direcciones de correo separadas por comas."
+            example: "Ejemplo: me@domain.com, friend@msn.com, workmate@work.com"
+          confirmation_email_form:
+            to: Para
+            from: De
+            subject: Asunto
+            click_to_edit_subject: Click aqui para modificar el asunto
+            explanation: "Cada vez que alguien se comunique con usted en su sitio web, Refinery enviara un correo electrónico respecto a esta nueva consulta."
+            below_edit_email_sent: "Abajo usted puede editar el email a donde la consulta será enviado."
+            the_customer_making_inquiry: El cliente haciendo la consulta
+            message: Mensaje
+            note: "Nota: ingrese el texto %name% donde quiera que el nombre del cliente aparezca en el email"
+          subject_form:
+            subject_value_name: Asunto
+  activerecord:
+    models:
+      refinery/inquiries/inquiry: Inquiry
+    attributes:
+      inquiry:
+        name: Name
+        email: Email
+        phone: Phone
+        message: Message

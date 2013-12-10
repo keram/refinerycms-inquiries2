@@ -1,0 +1,91 @@
+pt-BR:
+  refinery:
+    plugins:
+      inquiries:
+        title: Inquiries
+        description: Gerenciar contatos
+    inquiries:
+      inquiries:
+        form:
+          name_placeholder: ''
+          email_placeholder: ''
+          phone_placeholder: ''
+          message_placeholder: ''
+          sending_please_wait: 'Sending, please wait'
+          send: Enviar mensagem
+          privacy_policy: "Nós valorizamos sua privacidade"
+      mailer:
+        notification:
+          greeting: Olá
+          you_recieved_new_inquiry: Você recebeu um novo contato pelo website.
+          inquiry_starts: --- começo da mensagem ---
+          inquiry_ends: --- fim da mensagem ---
+          from: De
+          email: Email
+          phone: Telefone
+          message: Mensagem
+          closing_line: Atenciosamente
+          ps: OBS. Todos os contatos são armazenados na seção 'Contatos' do website.
+    admin:
+      inquiries:
+        inquiries:
+          delete: Remover esta mensagem para sempre
+          inquiry:
+            detail: Ler a mensagem
+            mark_as_spam: Marcar como spam
+            mark_as_ham: Marcar como segura
+            mark_as_archived: Move to archive
+            mark_as_fresh: Move to inbox
+            fresh: Fresh
+            ham: Ham
+            spam: Spam
+            archive: Archive
+          actions:
+            inbox: Caixa de Entrada
+            spam: Spam
+            archived: Archived
+            update_notified: Atualizar quem recebe a notificação
+            edit_confirmation_email: Editar email de confirmação
+          index:
+            no_inquiries: "Não exitem mensagens."
+          spam:
+            no_spam: Não existem mensagens de spam.
+          show:
+            details: Detalhes
+            age: Quando
+            actions: Ações
+            back_to_all_inquiries: Voltar para todas as Mensagens
+            spam: Spam
+            archived: Archived
+            inquiry: Inquiry
+            to: Para
+            from: De
+            click_to_email: Clique para enviar email
+            phone: Telefone
+            date: Data
+            message: Mensagem
+        settings:
+          notification_email_recipients_form:
+            settings_value_name: Enviar notificações para
+            explanation: "Toda vez que alguém contactar você no seu website, enviamos um email para notificar a essa pessoa o recebimento de uma mensagem."
+            hint: "Digite um endereço de email acima. Deseja que a notificação vá para mais de uma pessoa? Digite vários endereços de email separados por vírgulas."
+            example: "Digite os endereços da seguinte forma: eu@dominio.com, amigo@msn.com, colegadetrabalho@trabalho.com"
+          confirmation_email_form:
+            to: Para
+            from: De
+            subject: Assunto
+            click_to_edit_subject: Clique aqui para editar o assunto
+            explanation: "Toda vez que alguém contatar você no seu website, enviamos um email para confirmar o recebimento da mensagem para esta pessoa."
+            below_edit_email_sent: Abaixo você pode editar o texto a ser enviado no e-mail.
+            the_customer_making_inquiry: O cliente fazendo o contato
+            message: Mensagem
+            note: "Nota: posicione o texto %name% onde você desejar que o nome do cliente apareça no email."
+  activerecord:
+    models:
+      refinery/inquiries/inquiry: Inquiry
+    attributes:
+      inquiry:
+        name: Name
+        email: Email
+        phone: Phone
+        message: Message

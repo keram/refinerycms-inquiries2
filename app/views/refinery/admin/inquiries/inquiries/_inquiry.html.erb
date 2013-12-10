@@ -1,0 +1,26 @@
+<li class="record">
+  <div class="detail">
+    <span class="title">
+      <%= link_to inquiry.name, refinery.admin_inquiries_inquiry_path(inquiry) %>
+    </span>
+    <span class="preview"><%= strip_tags(sanitize(inquiry.message)) %></span>
+  </div>
+  <span class="actions">
+    <%= link_to t('delete', scope: 'refinery.admin.record'),
+                refinery.admin_inquiries_inquiry_path(inquiry),
+                class: 'delete confirm-delete nojs-hide icon-small delete-icon',
+                title: t('delete', scope: 'refinery.admin.inquiries.inquiries'),
+                data: {
+                  remote: true,
+                  confirm: t('message', scope: 'refinery.admin.delete', title: inquiry.name)
+                },
+                method: :delete %>
+
+    <%= link_to t('detail', scope: 'refinery.admin.record'),
+                refinery.admin_inquiries_inquiry_path(inquiry),
+                class: 'icon-small detail-icon',
+                title: t('.detail') %>
+
+    <%= render "#{action_name}_record_actions", inquiry: inquiry %>
+  </span>
+</li>

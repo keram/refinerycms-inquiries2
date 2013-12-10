@@ -1,0 +1,91 @@
+nl:
+  refinery:
+    plugins:
+      inquiries:
+        title: Inquiries
+        description: Contactformulier en beheer van inquiries
+    inquiries:
+      inquiries:
+        form:
+          name_placeholder: ''
+          email_placeholder: ''
+          phone_placeholder: ''
+          message_placeholder: ''
+          sending_please_wait: 'Sending, please wait'
+          send: Bericht verzenden
+          privacy_policy: Wij respecteren uw privacy
+      mailer:
+        notification:
+          greeting: Hallo
+          you_recieved_new_inquiry: U hebt een nieuwe inquiry ontvangen via de website.
+          inquiry_starts: --- begin van de inquiry ---
+          inquiry_ends: --- einde van de inquiry ---
+          from: Van
+          email: E-mail
+          phone: Telefoon
+          message: Bericht
+          closing_line: Met vriendelijke groet,
+          ps: P.S. Alle inquiries worden opgeslagen in de sectie Inquiries van Refinery.
+    admin:
+      inquiries:
+        inquiries:
+          delete: Deze inquiry definitief verwijderen
+          inquiry:
+            detail: Lees de inquiry
+            mark_as_spam: Als spam markeren
+            mark_as_ham: Naar de inbox verplaatsen
+            mark_as_archived: Move to archive
+            mark_as_fresh: Move to inbox
+            fresh: Fresh
+            ham: Ham
+            spam: Spam
+            archive: Archive
+          actions:
+            inbox: Inbox
+            spam: Spam
+            archived: Archived
+            update_notified: Wijzigen wie op de hoogte wordt gesteld
+            edit_confirmation_email: Bevestigings-e-mail bewerken
+          index:
+            no_inquiries: U heeft nog geen inquiries ontvangen.
+          spam:
+            no_spam: Hoera! U heeft geen spam.
+          show:
+            details: Details
+            age: Leeftijd
+            actions: Acties
+            back_to_all_inquiries: Terug naar alle inquiries
+            spam: Spam
+            archived: Archived
+            inquiry: Inquiry
+            to: Aan
+            from: Van
+            click_to_email: Klik hier om een e-mail te sturen naar dit adres
+            phone: Telefoonnummer
+            date: Datum
+            message: Bericht
+        settings:
+          notification_email_recipients_form:
+            settings_value_name: Stuur notificaties naar
+            explanation: "Telkens wanneer iemand het contactformulier invult op uw website, stuurt Refinery een bevestiging naar de verzender."
+            hint: "Wilt u naar meerdere adressen notificaties sturen? Vul dan meerdere e-mailadressen in gescheiden door komma's"
+            example: "Bijvoorbeeld: jan@werk.nl, els@kantoor.nl"
+          confirmation_email_form:
+            to: Aan
+            from: Van
+            subject: Onderwerp
+            click_to_edit_subject: Klik hier om het onderwerp bewerken
+            explanation: "Telkens wanneer iemand het contactformulier invult op uw website, stuurt Refinery een bevestiging naar de verzender."
+            below_edit_email_sent: Hieronder kunt u de email die verzonden wordt bewerken.
+            the_customer_making_inquiry: De persoon die de inquiry heeft ingezonden
+            message: Bericht
+            note: "N.B.: plaats de tekst %name% overal in de email waar u de naam van de klant persoon wilt invoegen"
+  activerecord:
+    models:
+      refinery/inquiries/inquiry: Inquiry
+    attributes:
+      inquiry:
+        name: Name
+        email: Email
+        phone: Phone
+        message: Message

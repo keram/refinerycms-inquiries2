@@ -1,0 +1,7 @@
+<% content_for :body do %>
+  <%=raw @page.content_for(:body) %>
+  <div class="inquiries">
+    <%= render 'form' %>
+  </div>
+<% end %>
+<%= render '/refinery/content_page' %>

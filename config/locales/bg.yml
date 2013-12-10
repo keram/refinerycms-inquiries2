@@ -1,0 +1,84 @@
+bg:
+  refinery:
+    plugins:
+      inquiries:
+        title: Запитвания
+        description: Осигурява форма за контакт и съхранение на запитвания
+    inquiries:
+      inquiries:
+        form:
+          name_placeholder: ''
+          email_placeholder: ''
+          phone_placeholder: ''
+          message_placeholder: ''
+          sending_please_wait: 'Sending, please wait'
+          send: Изпращане на съобщение
+          privacy_policy: Високо ценим Вашите лични данни
+      mailer:
+        notification:
+          greeting: Здравейте
+          you_recieved_new_inquiry: Току що получихте ново запитване през Вашия уебсайт.
+          inquiry_starts: --- Начало на запитването ---
+          inquiry_ends: --- Край на запитването ---
+          from: От
+          email: Е-поща
+          phone: Телефон
+          message: Съобщение
+          closing_line: Поздрави
+          ps: 'П.П. Всички запитвания към Вас се съхраняват от Refinery в секция "Запитвания" и могат да бъдат прегледани по-късно.'
+    admin:
+      inquiries:
+        inquiries:
+          delete: Изтриване на това запитване завинаги
+          inquiry:
+            read_inquiry: Прочит на запитването
+            mark_as_spam: Отбелязване като спам
+            mark_as_ham: 'Преместване във "Входящи"'
+          actions:
+            inbox: Входящи
+            spam: Спам
+            archived: Archived
+            update_notified: Получатели на уведомления
+            edit_confirmation_email: Е-поща за потвърждение
+          records:
+            no_inquiries: Все още не сте получи запитвания.
+            no_spam: Поздравления! Нямате никакъв спам.
+          show:
+            details: Подробности
+            age: Възраст
+            actions: Действия
+            back_to_all_inquiries: Обратно към всички запитвания
+            spam: Спам
+            archived: Archived
+            inquiry: Запитване
+          to: До
+          from: От
+          click_to_email: Изпращане на е-поща до този адрес
+          phone: Телефон
+          date: Дата
+          message: Съобщение
+        latest_inquiries: Последни запитвания
+      settings:
+        notification_recipients_form:
+          inquiry_settings_value_name: Изпращане на уведомления до
+          hint: При получаване на ново запитване, Refinery, ще Ви уведоми по е-пощата.
+          example: "Въведете адреса(или няколко) на Вашата е-поща. Например: jack@work.com, jill@office.com"
+        confirmation_email:
+          to: От
+          from: До
+          subject: Тема
+          click_to_edit_subject: Цъкнете тук за редактиране на темата
+          explanation: Всеки път, когато някой се свържи с Вас през уебсайта Ви, Refinery, ще изпраща е-поща до него за потвърждение.
+          below_edit_email_sent: По-долу можете да редактирате писмото, което ще бъде изпратено.
+          the_customer_making_inquiry: Запитващ
+          message: Съобщение
+          note: 'Забележка: Поставете текста "%name%", където бихте желали да се появи името на запитващия в писмото'
+  activerecord:
+    models:
+      refinery/inquiries/inquiry: запитване
+    attributes:
+      refinery/inquiries/inquiry:
+        name: Име
+        email: Е-поща
+        phone: Телефон
+        message: Съобщение

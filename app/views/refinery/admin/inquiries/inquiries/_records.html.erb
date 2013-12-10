@@ -1,0 +1,12 @@
+<% if @grouped_inquiries.any? %>
+  <% @grouped_inquiries.each do |container| %>
+    <h3><%= l((inquiry_group = container.last).first.created_at, format: :short) %></h3>
+    <ul class="records">
+      <%= render partial: 'inquiry', collection: inquiry_group %>
+    </ul>
+  <% end %>
+<% else %>
+  <p>
+    <strong><%= t('no_inquiries', scope: "refinery.admin.inquiries.inquiries.#{action_name.gsub('toggle_', '')}") %></strong>
+  </p>
+<% end %>

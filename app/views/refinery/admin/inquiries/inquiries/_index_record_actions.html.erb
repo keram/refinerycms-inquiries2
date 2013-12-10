@@ -1,0 +1,11 @@
+
+
+<%= link_to t('spam', scope: 'refinery.admin.inquiries.inquiries.inquiry'),
+            refinery.toggle_spam_admin_inquiries_inquiry_path(inquiry),
+            class: 'icon-small spam-icon',
+            title: t('mark_as_spam', scope: 'refinery.admin.inquiries.inquiries.inquiry') -%>
+
+<%= link_to t('archive', scope: 'refinery.admin.inquiries.inquiries.inquiry'),
+            refinery.toggle_archived_admin_inquiries_inquiry_path(inquiry),
+            class: 'icon-small folder-icon',
+            title: t('mark_as_archived', scope: 'refinery.admin.inquiries.inquiries.inquiry') -%>

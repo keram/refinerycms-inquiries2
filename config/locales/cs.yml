@@ -1,0 +1,91 @@
+cs:
+  refinery:
+    plugins:
+      inquiries:
+        title: Dotazy
+        description: Zajišťuje kontaktní formulář a uchovává dotazy
+    inquiries:
+      inquiries:
+        form:
+          name_placeholder: ''
+          email_placeholder: ''
+          phone_placeholder: ''
+          message_placeholder: ''
+          sending_please_wait: 'Odesílam, prosím čekejte'
+          send: Odeslat zprávu
+          privacy_policy: Vážíme si Vaše soukromí
+      mailer:
+        notification:
+          greeting: Ahoj
+          you_recieved_new_inquiry: Právě jsi obdržel nový dotaz na webové stránce.
+          inquiry_starts: --- začátek dotazu ---
+          inquiry_ends: --- konec dotazu ---
+          from: Od
+          email: E-mail
+          phone: Telefon
+          message: Zpráva
+          closing_line: S pozdravem
+          ps: Všechny vaše dotazy jsou uloženy pod záložkou "Dotazy" v Refinery, pokud by jste je chtěli zobrazit pozdeji.
+    admin:
+      inquiries:
+        inquiries:
+          delete: Trvale odstranit dotaz
+          inquiry:
+            detail: Přečíst dotaz
+            mark_as_spam: Označit jako spam
+            mark_as_ham: Přesunout do inboxu
+            mark_as_archived: Přesunout do archívu
+            mark_as_fresh: Přesunout do inboxu
+            fresh: Nový
+            ham: Nový
+            spam: Spam
+            archive: Archivovat
+          actions:
+            inbox: Inbox
+            spam: Spam
+            archived: Archivované
+            update_notified: Upravit seznam notifikovaných
+            edit_confirmation_email: Upravit potvrzující e-mail
+          index:
+            no_inquiries: Zatím jste neobdrželi žádné dotazy.
+          spam:
+            no_spam: Hurá! Nemáte žádný spam.
+          show:
+            details: Podrobnosti
+            age: Věk
+            actions: Akce
+            back_to_all_inquiries: Zpět na všechny inquiries
+            spam: Spam
+            archived: Archivované
+            inquiry: Dotaz
+            to: Komu
+            from: Od
+            click_to_email: Klikněte pro odeslání této adresy e-mailem
+            phone: Telefon
+            date: Datum
+            message: Zpráva
+        settings:
+          notification_email_recipients_form:
+            settings_value_name: Zaslat upozornění pro
+            explanation: Pokaždé, když Vás někdo kontaktuje přes vaše webové stránky, Refinery odešle e-mail s upozorněním na nový dotaz.
+            hint: Když je odeslán nový dotaz, Refinery pošle upozornení na Váš e-mail.
+            example: "Zadejte e-mailové adresy jako: jack@work.com, jill@office.com"
+          confirmation_email_form:
+            to: Komu
+            from: Od
+            subject: Předmet
+            click_to_edit_subject: Klikněte zde pro editaci předmetu
+            explanation: Když Vás někdo kontaktuje přes vaše webové stránky, Refinery odešle e-mail s potvrzením o přijetí odesílateli inquiry.
+            below_edit_email_sent: Níže můžete upravit e-mail, který je odeslán.
+            the_customer_making_inquiry: Klient delá inquiry
+            message: Zpráva
+            note: "Poznámka: umístěte text %name%, pro určení pozice jména klienta v e-maile"
+  activerecord:
+    models:
+      refinery/inquiries/inquiry: Dotaz
+    attributes:
+      inquiry:
+        name: Jméno
+        email: Email
+        phone: Telefon
+        message: Zpráva

@@ -1,0 +1,84 @@
+pl:
+  refinery:
+    plugins:
+      inquiries:
+        title: Zapytania
+        description: Zapewnia formularz kontaktowy i przechowuje zapytania
+        article: neutral
+    inquiries:
+      inquiries:
+        form:
+          name_placeholder: ''
+          email_placeholder: ''
+          phone_placeholder: ''
+          message_placeholder: ''
+          sending_please_wait: 'Sending, please wait'
+          send: Wyślij wiadomość
+          privacy_policy: Cenimy Twoją prywatność
+      mailer:
+        notification:
+          greeting: Cześć
+          you_recieved_new_inquiry: Z Twojej strony ktoś właśnie nowe zapytanie.
+          inquiry_starts: --- początek zapytania ---
+          inquiry_ends: --- koniec zapytania ---
+          from: Od
+          email: E-mail
+          phone: Telefon
+          message: Wiadomość
+          closing_line: Z poważaniem
+          ps: P.S. Wszystkie Twoje zapytania są przechowywane pod zakładką "Zapytania" w Refinery, więc możesz do nich wrócić jeżeli będzie to potrzebne.
+    admin:
+      inquiries:
+        inquiries:
+          delete: Na zawsze usuń to zapytanie
+          inquiry:
+            read_inquiry: Przeczytaj zapytanieRead the inquiry
+            said: powiedział
+            mark_as_spam: Oznacz jako spam
+            mark_as_ham: Przenieś do przychodzących
+          actions:
+            inbox: Przychodzące
+            spam: Spam
+            update_notified: Zmień, kto zostaje powiadamiany
+            edit_confirmation_email: Zmień email z potwierdzeniem
+          records:
+            no_inquiries: Nie ma jeszcze żadnych zapytań.
+            no_spam: Hurra! Nie masz żadnego spamu.
+          show:
+            details: Szczegóły
+            age: Wiek
+            actions: Akcje
+            back_to_all_inquiries: Powrót do wszystkich zapytań
+            spam: Spam
+            inquiry: Zapytanie
+            to: Do
+            from: Od
+            click_to_email: Kliknij tu aby wysłać e-mail na ten adres
+            phone: Telefon
+            date: Data
+            message: Wiadomość
+        latest_inquiries: Najnowsze Zapytania
+        settings:
+          notification_recipients_form:
+            inquiry_settings_value_name: Wysyłaj powiadomienia do
+            hint: Kiedy dostarczone zostanie nowe zapytanie, Refinery wyśle do Ciebie wiadomość e-mail.
+            example: "Podaj swój adres (lub adresy) e-mail, w taki sposób: jack@work.com, jill@office.com"
+          confirmation_email:
+            to: Do
+            from: Od
+            subject: Temat
+            click_to_edit_subject: Kliknij tu aby zmienić temat
+            explanation: Za każdym razem kiedy ktoś kontaktuje się z Tobą poprzez witrynę, Refinery wysyła do tej osoby e-mail.
+            below_edit_email_sent: Poniżej można zmienić e-mail który zostanie wysłany.
+            the_customer_making_inquiry: Klient wykonujący zapytanie
+            message: Wiadomość
+            note: "Uwaga: w celu zamieszczenia imienia klienta należy umieścić tekst %name%"
+  activerecord:
+    models:
+      refinery/inquiries/inquiry: zapytanie
+    attributes:
+      refinery/inquiries/inquiry:
+        name: Imię
+        email: E-mail
+        phone: Telefon
+        message: Wiadomość

@@ -1,0 +1,19 @@
+<%= t('.greeting') %>,
+
+<%= t('.you_recieved_new_inquiry') %>
+
+<%= t('.inquiry_starts') %>
+
+<%= t('.name', default: t('activerecord.attributes.inquiry.name')) %>: <%= @inquiry.name %>
+<%= t('.email', default: t('activerecord.attributes.inquiry.email')) %>: <%= @inquiry.email %>
+<%= t('.phone', default: t('activerecord.attributes.inquiry.phone')) %>: <%= @inquiry.phone %>
+<%= t('.message', default: t('activerecord.attributes.inquiry.message')) %>:
+
+<%= @inquiry.message %>
+
+<%= t('.inquiry_ends') %>
+
+<%= t('.closing_line') %>,
+<%= Refinery::Core.site_name %>
+
+<%= raw t('.ps') %>

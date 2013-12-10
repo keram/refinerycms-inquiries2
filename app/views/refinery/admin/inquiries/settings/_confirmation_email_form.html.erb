@@ -1,0 +1,78 @@
+<%= form_for @setting,
+              url: refinery.admin_inquiries_setting_path,
+              html: { data: { remote: true }} do |f| %>
+
+  <div class="clearfix">
+
+    <%= render('/refinery/admin/locale_picker',
+                url: 'edit_admin_inquiries_setting_path',
+                url_options: { id: @setting.slug }) %>
+
+    <div class="form-title">
+      <h1>
+        <%= t('edit_setting', scope: 'refinery.admin.settings.actions') %>:
+        <%= t('confirmation_email', scope: 'refinery.admin.settings') %>
+      </h1>
+      <div>
+        <p class="breadcrumbs less-important">
+          <%= link_to refinery_plugin.title, refinery_plugin.url %>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <%= render '/refinery/admin/error_messages', object: @setting, include_object_name: true %>
+
+  <p>
+    <%= t('.explanation') %>
+    <br/>
+    <%= t('.below_edit_email_sent') %>
+  </p>
+
+  <table id="inquiry">
+    <tr>
+      <th>
+        <label class="stripped"><%= t('.to') %></label>
+      </th>
+      <td>
+        <%= t('.the_customer_making_inquiry') %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label class="stripped"><%= t('.from') %></label>
+      </th>
+      <td>
+        <%= "#{Refinery::Core.site_name} &lt;#{Refinery::Core.site_emails_emitter}&gt;".html_safe %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <%= label_tag 'setting[confirmation_email][subject]', t('.subject'), class: 'stripped' %>
+      </th>
+      <td>
+        <%= text_field 'setting[confirmation_email]', :subject,
+                    value: Refinery::Inquiries::Setting.confirmation_subject,
+                    class: 'widest' %>
+      </td>
+    </tr>
+    <tr>
+      <th valign="top">
+        <%= label_tag 'setting[confirmation_email][subject]', t('.message'), class: 'stripped' %>
+      </th>
+      <td>
+        <%= text_area 'setting[confirmation_email]', :message,
+                    value: Refinery::Inquiries::Setting.confirmation_message,
+                    rows: 7,
+                    class: 'widest' %>
+        <br/>
+        <em><%= t('.note') %></em>
+      </td>
+    </tr>
+  </table>
+
+  <%= render '/refinery/admin/form_actions', f: f,
+              cancel_url: refinery.admin_inquiries_inquiries_url,
+              hide_delete: true %>
+<% end %>

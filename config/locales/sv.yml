@@ -1,0 +1,83 @@
+sv:
+  refinery:
+    plugins:
+      inquiries:
+        title: Förfrågningar
+        description: Tillhandahåller ett formulär och sparar förfrågningar
+    inquiries:
+      inquiries:
+        form:
+          name_placeholder: ''
+          email_placeholder: ''
+          phone_placeholder: ''
+          message_placeholder: ''
+          sending_please_wait: 'Sending, please wait'
+          send: Skicka meddelande
+          privacy_policy: Vi värderar ditt privatliv
+      mailer:
+        notification:
+          greeting: Hej!
+          you_recieved_new_inquiry: Du har just mottagit en ny förfrågan på din webbplats.
+          inquiry_starts: --- förfrågan börjar ---
+          inquiry_ends: --- förfrågan slutar ---
+          from: Från
+          email: E-postadress
+          phone: Telefon
+          message: Meddelande
+          closing_line: Vänliga hälsningar
+          ps: P.S. Alla dina förfrågningar sparas i "Förfrågningar"-sektionen av Refinery. Där kan du visa dem senare.
+    admin:
+      inquiries:
+        inquiries:
+          delete: Ta bort den här förfrågan för alltid
+          inquiry:
+            read_inquiry: Läs förfrågan
+            said: said
+            mark_as_spam: Märk som skräppost
+            mark_as_ham: Flytta till inkorg
+          actions:
+            inbox: Inkorg
+            spam: Skräppost
+            update_notified: Redigera vem som får notifikation
+            edit_confirmation_email: Redigera bekräftelse
+          records:
+            no_inquiries: Du har inte fått några förfrågningar ännu.
+            no_spam: Hurra! Du har ingen skräppost.
+          show:
+            details: Detaljer
+            age: Ålder
+            actions: Handlingar
+            back_to_all_inquiries: Tillbaka till alla förfrågningar
+            spam: Skräppost
+            inquiry: Förfrågan
+            to: Till
+            from: Från
+            click_to_email: Klicka för att skicka e-post till den här adressen
+            phone: Telefon
+            date: Datum
+            message: Meddelande
+        latest_inquiries: Senaste Utredningarna
+        settings:
+          notification_recipients_form:
+            inquiry_settings_value_name: Skicka notifikationer till
+            hint: När en ny förfrågan skickas in, skickar Refinery en notifikation till dig.
+            example: "Fyll i din/dina e-postadresser så här: jack@work.com, jill@office.com"
+          confirmation_email:
+            to: Till
+            from: Från
+            subject: Ämne
+            click_to_edit_subject: Klicka här för att ändra ämne
+            explanation: Varje gång någon kontaktar dig på din webbplats, skickar Refinery ut ett bekräftelsebrev till personen som kontaktade dig.
+            below_edit_email_sent: Nedanför är det brev som skickas ut
+            the_customer_making_inquiry: Besökaren som skickat förfrågan
+            message: Meddelande
+            note: "Notis: placera texten %name% där du vill att besökarens namn ska visas i brevet"
+  activerecord:
+    models:
+      refinery/inquiries/inquiry: förfrågning
+    attributes:
+      refinery/inquiries/inquiry:
+        name: Namn
+        email: E-postadress
+        phone: Telefon
+        message: Meddelande
