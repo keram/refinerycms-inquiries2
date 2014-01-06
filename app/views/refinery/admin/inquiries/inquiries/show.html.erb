@@ -73,18 +73,9 @@
   <h2><%= t('.actions') %></h2>
   <ul>
     <li>
-      <%= link_to t('.back_to_all_inquiries'), refinery.url_for(action: 'index'),
-                   class: 'icon-small icon-with-text back-icon' %>
-    </li>
-    <li>
-      <%= link_to t('delete', scope: 'refinery.admin.record'),
-                  refinery.admin_inquiries_inquiry_path(@inquiry),
-                  class: 'icon-small icon-with-text delete-icon confirm-delete',
-                  title: t('delete', scope: 'refinery.admin.inquiries.inquiries'),
-                  data: {
-                    confirm:  t('message', scope: 'refinery.admin.delete', title: @inquiry.name),
-                    method: 'delete'
-                  } %>
+      <%= link_to t('.back_to_all_inquiries'),
+                  refinery.admin_inquiries_inquiries_path,
+                  class: 'icon-small icon-with-text back-icon' %>
     </li>
 
   <% if @inquiry.fresh? %>
@@ -115,5 +106,15 @@
     </li>
   <% end %>
 
+    <li>
+      <%= link_to t('delete', scope: 'refinery.admin.record'),
+                  refinery.admin_inquiries_inquiry_path(@inquiry),
+                  class: 'icon-small icon-with-text delete-icon confirm-delete',
+                  title: t('delete', scope: 'refinery.admin.inquiries.inquiries'),
+                  data: {
+                    confirm:  t('message', scope: 'refinery.admin.delete', title: @inquiry.name),
+                    method: 'delete'
+                  } %>
+    </li>
   </ul>
 </aside>

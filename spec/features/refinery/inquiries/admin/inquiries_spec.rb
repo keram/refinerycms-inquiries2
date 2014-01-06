@@ -21,7 +21,7 @@ module Refinery
               visit refinery.admin_inquiries_inquiries_path
 
               within "#content" do
-                page.should have_content("You have not received any inquiries yet.")
+                page.should have_content("You don't have any inquiries in inbox.")
               end
             end
           end
@@ -43,11 +43,13 @@ module Refinery
           specify "in the side pane" do
             within "#actions" do
               page.should have_content("Inbox")
-              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries']")
+              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries/inquiries']")
+              page.should have_content("Archived")
+              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries/inquiries/archived']")
               page.should have_content("Spam")
-              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries/spam']")
+              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries/inquiries/spam']")
               page.should have_content("Update who gets notified")
-              page.should have_selector("a[href*='/#{Refinery::Core.backend_route}/inquiries/settings/inquiry_notification_recipients/edit']")
+              page.should have_selector("a[href*='/#{Refinery::Core.backend_route}/inquiries/settings/notification_email_recipients/edit']")
               page.should have_content("Edit confirmation email")
               page.should have_selector("a[href*='/#{Refinery::Core.backend_route}/inquiries/settings/confirmation_email']")
             end
@@ -59,7 +61,7 @@ module Refinery
             visit refinery.admin_inquiries_inquiries_path
 
             within "#content" do
-              page.should have_content("David Jones said Hello, I really like your website. Was it hard to build a...")
+              page.should have_content("David Jones Hello, I really like your website. Was it hard to build and maintain or could anyone do it?")
             end
           end
         end
@@ -67,22 +69,25 @@ module Refinery
         describe "show" do
           it "shows inquiry details" do
             visit refinery.admin_inquiries_inquiries_path
-
             within "#inquiry_#{inquiry.id}" do
-              click_link "Read the inquiry"
+              click_link "Detail"
             end
 
-            page.should have_content("From David Jones [dave@refinerycms.com]")
-            page.should have_content("Hello, I really like your website. Was it hard to build and maintain or could anyone do it?")
+            within "#content" do
+              page.should have_content("David Jones")
+              page.should have_content("dave@refinerycms.com")
+              page.should have_content("Hello, I really like your website. Was it hard to build and maintain or could anyone do it?")
+            end
+
             within "#actions" do
               page.should have_content("Back to all Inquiries")
-              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries']")
-              page.should have_content("Archive")
-              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries/#{inquiry.id}/toggle_archive']")
+              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries/inquiries']")
+              page.should have_content("Move to archive")
+              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries/inquiries/#{inquiry.id}/toggle_archived']")
               page.should have_content("Mark as spam")
-              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries/#{inquiry.id}/toggle_spam']")
-              page.should have_content("Remove this inquiry forever")
-              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries/#{inquiry.id}']")
+              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries/inquiries/#{inquiry.id}/toggle_spam']")
+              page.should have_content("Delete")
+              page.should have_selector("a[href='/#{Refinery::Core.backend_route}/inquiries/inquiries/#{inquiry.id}']")
             end
           end
         end
@@ -122,41 +127,80 @@ module Refinery
             end
 
             within "#content" do
-              page.should have_content("David Jones said Hello, I really like your website. Was it hard to build a...")
+              page.should have_content("David Jones Hello, I really like your website.")
             end
           end
         end
 
         describe "update who gets notified" do
+
+          before do
+            notification_email = {
+              recipients: Refinery::Core.site_emails_receiver,
+              subject: "#{Refinery::Core.site_name} - New inquiry"
+            }
+
+            notification_email.each do |key, val|
+              setting = Refinery::Setting.where(
+                name: "notification_email_#{key}",
+                scoping: 'inquiries',
+                destroyable: false,
+                restricted: true
+              ).first_or_initialize
+
+              setting.update_attributes(value: val) if setting.value.blank?
+            end
+          end
+
           it "sets receiver" do
             visit refinery.admin_inquiries_inquiries_path
-
             click_link "Update who gets notified"
+
             within ".edit_setting" do
               fill_in "setting_value", with: "phil@refinerycms.com"
               click_button "Save"
             end
 
             within "#main" do
-              page.should have_content("Setting 'Inquiry Notification Recipients' was successfully updated.")
+              page.should have_content("Setting 'Notification recipients' was successfully updated.")
             end
           end
         end
 
         describe "updating confirmation email copy" do
+          before do
+            confirmation_email = {
+              subject: "Thank you for your inquiry - #{Refinery::Core.site_name}",
+              message: "Hello %name%,\n\nThis email is a receipt to confirm we have received your inquiry and we'll be in touch shortly.\n\nThanks."
+            }
+
+            Refinery::I18n.frontend_locales.each do |locale|
+              confirmation_email.each do |key, val|
+                setting = Refinery::Setting.where(
+                  name: "confirmation_email_#{key}_#{locale}",
+                  scoping: 'inquiries',
+                  destroyable: false,
+                  restricted: true
+                ).first_or_initialize
+
+                setting.update_attributes(value: val) if setting.value.blank?
+              end
+            end
+          end
+
           it "sets message" do
             visit refinery.admin_inquiries_inquiries_path
 
             click_link "Edit confirmation email"
 
-            within ".edit_setting" do
-              fill_in "subject__en", with: "subject"
-              fill_in "body__en", with: "message"
+            within ".edit_confirmation_email_setting" do
+              fill_in "setting_confirmation_email_subject", with: "subject"
+              fill_in "setting_confirmation_email_message", with: "message"
               click_button "Save"
             end
 
             within "#main" do
-              page.should have_content("Inquiry 'confirmation email' was successfully updated.")
+              page.should have_content("Setting 'Confirmation email' was successfully updated.")
             end
           end
         end
