@@ -24,13 +24,13 @@ module Refinery
             Mailer.notification(@inquiry).deliver
           rescue => e
             logger.warn "There was an error delivering the inquiry notification.\n#{e.message}\n"
-          end if @inquiry.ham?
+          end if @inquiry.ham? || Refinery::Inquiries.send_notifications_for_inquiries_marked_as_spam
 
           begin
             Mailer.confirmation(@inquiry).deliver
           rescue => e
             logger.warn "There was an error delivering the inquiry confirmation:\n#{e.message}\n"
-          end if @inquiry.ham?
+          end if @inquiry.ham? || Refinery::Inquiries.send_notifications_for_inquiries_marked_as_spam
 
           redirect_to refinery.url_for((thank_you_page || page).url), status: :see_other
         else
