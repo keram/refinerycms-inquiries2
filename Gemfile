@@ -16,7 +16,7 @@ git 'git://github.com/keram-refinery/refinerycms.git', branch: 'refinery_light' 
 end
 
 gem  'filters_spam',         '~> 0.3'
-gem 'capybara-email', path: '/home/keram/work/klient/secret/cutdef/vendor/capybara-email'
+gem 'capybara-email', '~> 2.2.0', github: 'dockyard/capybara-email', branch: 'master'
 
 # Database Configuration
 platforms :jruby do
@@ -35,9 +35,6 @@ end
 group :development, :test do
   platforms :ruby do
     require 'rbconfig'
-    if RbConfig::CONFIG['target_os'] =~ /linux/i
-      gem 'therubyracer', '~> 0.12.0'
-    end
   end
 end
 
@@ -45,12 +42,12 @@ end
 # in production environments by default.
 gem 'sass-rails', '~> 4.0.1'
 gem 'coffee-rails', '~> 4.0.1'
-gem 'uglifier', '~> 2.3.1'
+gem 'uglifier', '~> 2.4.0'
 
-gem 'turbolinks', '~> 1.3.1'
+gem 'turbolinks', '~> 2.1.0'
 
 gem 'jquery-rails', '~> 3.0.4'
-gem 'jquery-ui-rails', '~> 4.1.0'
+gem 'jquery-ui-rails', '~> 4.1.1'
 gem 'i18n-iso639matrix', '~> 0.0.1', github: 'keram/i18n-iso639matrix', branch: 'master'
 
 # Load local gems according to Refinery developer preference.
