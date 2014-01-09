@@ -1,18 +1,36 @@
 <section id="records">
-  <h2><%= t('.inquiry') %></h2>
-  <table id="inquiry" class="inquiry">
-    <thead>
-      <tr>
-        <th></th>
-        <td>
+  <div class="form-title">
+    <h1><%= t('.inquiry') %></h1>
+
+    <div class="clearfix">
+      <div class="meta-informations right-side">
         <% if @inquiry.spam? %>
-          <%= t('.spam') %>
+          <span class="label spam"><%= t('.spam') %></span>
         <% end %>
         <% if @inquiry.archived? %>
-          <%= t('.archived') %>
+          <span class="label archived"><%= t('.archived') %></span>
         <% end %>
-        </td>
-      </tr>
+      </div>
+      <div class="breadcrumbs less-important">
+        <%= link_to t('title', scope: 'refinery.plugins.inquiries'),
+            refinery.admin_inquiries_inquiries_path %>
+
+        <% if @inquiry.spam? %>
+          &nbsp;/&nbsp;
+          <%= link_to t('.spam'),
+                refinery.spam_admin_inquiries_inquiries_path -%>
+        <% end %>
+
+        <% if @inquiry.archived? %>
+          &nbsp;/&nbsp;
+          <%= link_to t('.archived'),
+                      refinery.archived_admin_inquiries_inquiries_path -%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <table id="inquiry" class="inquiry">
+    <thead>
       <tr>
         <th><%= t('.age') %></th>
         <td><%= time_ago_in_words(@inquiry.created_at) %></td>
